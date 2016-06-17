@@ -12,11 +12,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Tyler on 6/15/2016.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-
     public static final String DATABASE_NAME = "number_db";
     public static final String TABLE_NAME = "number_table";
     public static final String COL_1 = "ID";
-    public static final String COL_2= "NUMBER";
+    public static final String COL_2 = "NUMBER";
 
 
     public DatabaseHelper(Context context) {
@@ -49,19 +48,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getData(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor resultCursor = db.rawQuery("SELECT "+ COL_2 + " from " + TABLE_NAME + " ; ", null);
+        Cursor resultCursor = db.rawQuery("SELECT "+ COL_2 + " from " + TABLE_NAME + "; ", null);
         System.out.println("Got raqQuery");
+        //System.out.println(resultCursor.);
         return resultCursor;
     }
 
 
-    public boolean updateData(String id, String number){
+    public boolean updateData(String number){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, id);
+        contentValues.put(COL_1, "1");
         contentValues.put(COL_2, number);
 
-        db.update(TABLE_NAME, contentValues, "id = ?", new String[]{ id });
+        db.update(TABLE_NAME, contentValues, "id = ?", new String[]{ "1" });
         return true;
     }
 }
