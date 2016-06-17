@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
-                "( ID INTEGER PRIMARY KEY AUTOINCREMENT, NUMBER TEXT);");
+                "( ID INTEGER PRIMARY KEY, NUMBER TEXT);");
     }
 
     @Override
@@ -39,6 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertData(String number) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1, "1");
         contentValues.put(COL_2, number);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
